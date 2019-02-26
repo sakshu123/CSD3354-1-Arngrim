@@ -142,6 +142,24 @@ namespace Assignment
             this.TraverseVillages(Alst);
             this.Announcement();
         }
+        public void Announcement()
+        {
+            try
+            {
+                // Create an instance of StreamReader to read from a file.
+                // The using statement also closes the StreamReader.
+                using (StreamReader sr = new StreamReader("U:\\Users\\732116\\announcement.txt"))
+                {
+                    string line;
+
+                    // Read and display lines from the file until 
+                    // the end of the file is reached. 
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        Console.WriteLine(line);
+                    }
+                }
+            }
     }
 
 }
