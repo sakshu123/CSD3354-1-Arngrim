@@ -74,4 +74,74 @@ namespace Assignment
         public bool isAstrildgeHere;
     }
 
+    class CountrySide
+    {
+
+        static void Main()
+        {
+            CountrySide a = new CountrySide();
+            a.Run();
+        }
+
+        // Create the LinkedList to reflect the Map in the PowerPoint Instructions
+        Village Maeland;
+        Village Helmholtz;
+        Village Alst;
+        Village Wessig;
+        Village Badden;
+        Village Uster;
+        Village Schvenig;
+
+        public void TraverseVillages(Village CurrentVillage)
+        {
+            try
+            {
+                if (Hugi.FoundAstrilde) return;
+
+                // Here Hugi records his travels, as any Norse Hero will do:
+                Hugi.HugiJournal.Add(new JournalEntry(CurrentVillage.VillageName, CurrentVillage.distanceFromPreviousVillage));
+
+                Console.WriteLine("I am in {0}", CurrentVillage.VillageName);
+
+                if (CurrentVillage.isAstrildgeHere)
+                {
+                    Console.WriteLine("I found Dear Astrildge in {0}", CurrentVillage.VillageName);
+                    Console.WriteLine("**** FEELING HAPPY!!! ******");
+                    Console.WriteLine("Astrilde, I walked {0} vika to find you. Will you marry me?", Hugi.CalculateDistanceWalked());
+                    Hugi.FoundAstrilde = true;
+                }
+
+                // TO DO: Complete this section to make the Recursion work           
+                TraverseVillages(CurrentVillage.west);
+                TraverseVillages(CurrentVillage.east);
+            }
+
+            catch (NullReferenceException) { }
+        }
+        public void Run()
+        {
+            //tries eevery loc
+            Alst = new Village("Alst", false);
+            Schvenig = new Village("Schvenig", false);
+            Wessig = new Village("Wessig", false);
+            // TO DO: Complete this section
+            Uster = new Village("Uster", true);
+            Badden = new Village("badden", false);
+            Maeland = new Village("Maeland", false);
+            Helmholtz = new Village("Helmholtz", false);
+
+            Alst.VillageSetup(0, Schvenig, Wessig);
+            Schvenig.VillageSetup(14, Maeland, Helmholtz);
+            // TO DO: Complete this section
+            Wessig.VillageSetup(19, Uster, Badden);
+            Uster.VillageSetup(28, null, null);
+            Badden.VillageSetup(11, null, null);
+            Maeland.VillageSetup(9, null, null);
+            Helmholtz.VillageSetup(28, null, null);
+
+            this.TraverseVillages(Alst);
+            this.Announcement();
+        }
+    }
+
 }
