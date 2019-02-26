@@ -118,6 +118,7 @@ namespace Assignment
 
             catch (NullReferenceException) { }
         }
+
         public void Run()
         {
             //tries eevery loc
@@ -142,13 +143,14 @@ namespace Assignment
             this.TraverseVillages(Alst);
             this.Announcement();
         }
+
         public void Announcement()
         {
             try
             {
                 // Create an instance of StreamReader to read from a file.
                 // The using statement also closes the StreamReader.
-                using (StreamReader sr = new StreamReader("U:\\Users\\732116\\announcement.txt"))
+                using (StreamReader sr = new StreamReader("U:\\Users\\732127\\announcement.txt"))
                 {
                     string line;
 
@@ -160,6 +162,13 @@ namespace Assignment
                     }
                 }
             }
+            catch (Exception e)
+            {
+                // Let the user know what went wrong.
+                Console.WriteLine("The file could not be read:");
+                Console.WriteLine(e.Message);
+            }
+        }
     }
 
 }
